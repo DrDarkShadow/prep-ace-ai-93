@@ -5,7 +5,11 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-bg">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 floating-shapes" />
+      <div className="absolute inset-0 floating-shapes">
+        <div className="floating-triangle" />
+        <div className="floating-square" />
+        <div className="floating-hexagon" />
+      </div>
       
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
