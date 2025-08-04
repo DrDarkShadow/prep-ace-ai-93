@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,7 +13,10 @@ import { User, Settings, LogOut, Brain, Moon, Sun } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false); // For demo purposes
   const { theme, setTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Handle scroll effect
   useEffect(() => {
@@ -39,15 +43,30 @@ const Navigation = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-foreground hover:text-primary transition-colors font-medium">
+            <button 
+              onClick={() => navigate("/")}
+              className={`transition-colors font-medium ${
+                location.pathname === "/" ? "text-primary" : "text-muted-foreground hover:text-primary"
+              }`}
+            >
               Home
-            </a>
-            <a href="#dashboard" className="text-muted-foreground hover:text-primary transition-colors font-medium">
+            </button>
+            <button 
+              onClick={() => navigate("/dashboard")}
+              className={`transition-colors font-medium ${
+                location.pathname === "/dashboard" ? "text-primary" : "text-muted-foreground hover:text-primary"
+              }`}
+            >
               Dashboard
-            </a>
-            <a href="#past-interviews" className="text-muted-foreground hover:text-primary transition-colors font-medium">
+            </button>
+            <button 
+              onClick={() => navigate("/past-interviews")}
+              className={`transition-colors font-medium ${
+                location.pathname === "/past-interviews" ? "text-primary" : "text-muted-foreground hover:text-primary"
+              }`}
+            >
               Past Interviews
-            </a>
+            </button>
           </div>
 
           {/* Theme Toggle & User Profile */}
@@ -63,32 +82,45 @@ const Navigation = () => {
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage src="/placeholder-user.jpg" alt="User" />
-                    <AvatarFallback className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
-                      <User className="h-5 w-5" />
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 glass-card" align="end">
-                <DropdownMenuItem className="cursor-pointer">
-                  <User className="mr-2 h-4 w-4" />
-                  Profile
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  <Settings className="mr-2 h-4 w-4" />
-                  Settings
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer text-destructive">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Sign Out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {!isSignedIn ? (
+              <Button 
+                variant="outline" 
+                onClick={() => setIsSignedIn(true)}
+                className="font-medium"
+              >
+                Sign In
+              </Button>
+            ) : (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src="/placeholder-user.jpg" alt="User" />
+                      <AvatarFallback className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
+                        <User className="h-5 w-5" />
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 glass-card" align="end">
+                  <DropdownMenuItem className="cursor-pointer">
+                    <User className="mr-2 h-4 w-4" />
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer">
+                    <Settings className="mr-2 h-4 w-4" />
+                    Settings
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    className="cursor-pointer text-destructive"
+                    onClick={() => setIsSignedIn(false)}
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
         </div>
       </div>
