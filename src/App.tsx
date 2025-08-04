@@ -8,6 +8,12 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import PastInterviews from "./pages/PastInterviews";
 import NotFound from "./pages/NotFound";
+import InterviewPreparation from "./pages/InterviewPreparation";
+import QuestionBank from "./pages/QuestionBank";
+import UserFeedback from "./pages/UserFeedback";
+import SuggestQuestions from "./pages/SuggestQuestions";
+import TrendingQuestions from "./pages/TrendingQuestions";
+import Discussions from "./pages/Discussions";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +28,12 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/past-interviews" element={<PastInterviews />} />
+            <Route path="/interview-preparation" element={<InterviewPreparation />} />
+            <Route path="/question-bank" element={<QuestionBank />} />
+            <Route path="/user-feedback" element={<UserFeedback />} />
+            <Route path="/suggest-questions" element={<SuggestQuestions />} />
+            <Route path="/trending-questions" element={<TrendingQuestions />} />
+            <Route path="/discussions" element={<Discussions />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

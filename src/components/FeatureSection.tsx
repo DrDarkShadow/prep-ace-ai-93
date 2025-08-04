@@ -1,36 +1,43 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Users, TrendingUp, HelpCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const FeatureSection = () => {
+  const navigate = useNavigate();
+  
   const features = [
     {
       icon: MessageSquare,
       title: "User Feedback",
       description: "Share your experience and help us improve the platform with your valuable feedback.",
       gradient: "from-blue-500 to-cyan-500",
-      action: "Share Feedback"
+      action: "Share Feedback",
+      route: "/user-feedback"
     },
     {
       icon: HelpCircle,
       title: "Suggest Questions",
       description: "Contribute to our question bank by suggesting new interview questions with proper tags.",
       gradient: "from-purple-500 to-pink-500",
-      action: "Suggest Question"
+      action: "Suggest Question",
+      route: "/suggest-questions"
     },
     {
       icon: TrendingUp,
       title: "Trending Questions",
       description: "Discover the most popular and highly-rated questions from our community.",
       gradient: "from-green-500 to-emerald-500",
-      action: "View Trending"
+      action: "View Trending",
+      route: "/trending-questions"
     },
     {
       icon: Users,
       title: "Discussions",
       description: "Join the community discussions and get answers to your interview preparation questions.",
       gradient: "from-orange-500 to-red-500",
-      action: "Join Discussion"
+      action: "Join Discussion",
+      route: "/discussions"
     }
   ];
 
@@ -71,6 +78,7 @@ const FeatureSection = () => {
                   <Button 
                     variant="outline" 
                     className="w-full group-hover:border-primary group-hover:text-primary transition-colors"
+                    onClick={() => navigate(feature.route)}
                   >
                     {feature.action}
                   </Button>
