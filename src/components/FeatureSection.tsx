@@ -38,11 +38,11 @@ const FeatureSection = () => {
     <section className="py-24 bg-gradient-to-b from-background to-secondary/20">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-reveal">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Community & 
-            <span className="text-shimmer"> Features</span>
+            <span className="text-gradient"> Features</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-scale">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Join our growing community of interview preparation enthusiasts and access powerful features.
           </p>
         </div>
@@ -53,26 +53,26 @@ const FeatureSection = () => {
             return (
               <Card 
                 key={index} 
-                className="interactive-card group h-full tilt-card glow-on-hover"
-                style={{ animationDelay: `${index * 150}ms` }}
+                className="interactive-card group h-full"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-r ${feature.gradient} flex items-center justify-center morphing-shape shadow-lg group-hover:shadow-2xl transition-shadow duration-500`}>
-                    <Icon className="h-8 w-8 text-white group-hover:scale-110 transition-transform duration-300" />
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-r ${feature.gradient} flex items-center justify-center`}>
+                    <Icon className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-semibold group-hover:text-shimmer transition-all duration-300">
+                  <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center space-y-4">
-                  <CardDescription className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors">
+                  <CardDescription className="text-muted-foreground leading-relaxed">
                     {feature.description}
                   </CardDescription>
                   <Button 
                     variant="outline" 
-                    className="w-full magnetic-btn group-hover:border-primary group-hover:text-primary group-hover:bg-primary/5 transition-all duration-300 relative overflow-hidden"
+                    className="w-full group-hover:border-primary group-hover:text-primary transition-colors"
                   >
-                    <span className="relative z-10">{feature.action}</span>
+                    {feature.action}
                   </Button>
                 </CardContent>
               </Card>
